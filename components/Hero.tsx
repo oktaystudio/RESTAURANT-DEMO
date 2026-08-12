@@ -9,92 +9,79 @@ export default function Hero() {
       id="anasayfa"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Arka Plan Fotoğrafı */}
-      <Image
-        src="/hero.png"
-        alt="Lezzet Durağı"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
+      {/* ARKA PLAN FOTOĞRAFI */}
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0, scale: 1.08 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 1.2,
+          ease: "easeOut",
+        }}
+      >
+        <Image
+          src="/hero.png"
+          alt="Lezzet Durağı"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+      </motion.div>
 
       {/* Koyu Katman */}
-      <div className="absolute inset-0 bg-black/60" />
+      <motion.div
+        className="absolute inset-0 bg-black/60"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1.2,
+          ease: "easeOut",
+        }}
+      />
 
-      {/* Hareketli Işık Efekti */}
+      {/* Turuncu Işık Efekti */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
+        initial={{ opacity: 0 }}
         animate={{
-          opacity: [0.15, 0.3, 0.15],
+          opacity: [0, 0.3, 0.15],
         }}
         transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
+          duration: 1.5,
+          ease: "easeOut",
         }}
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(249,115,22,0.25), transparent 45%)",
+            "radial-gradient(circle at 50% 50%, rgba(249,115,22,0.3), transparent 45%)",
         }}
       />
 
-      {/* İçerik */}
-      <div className="relative z-10 text-center text-white px-6">
-
-        {/* Küçük Başlık */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.7,
-            ease: "easeOut",
-          }}
-          className="text-orange-500 font-bold text-lg md:text-xl mb-4"
-        >
+      {/* TÜM İÇERİK */}
+      <motion.div
+        className="relative z-10 text-center text-white px-6"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 1,
+          delay: 0.2,
+          ease: "easeOut",
+        }}
+      >
+        <p className="text-orange-500 font-bold text-lg md:text-xl mb-4">
           LEZZETİN ADRESİ
-        </motion.p>
+        </p>
 
-        {/* Ana Başlık */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.15,
-            ease: "easeOut",
-          }}
-          className="text-5xl md:text-7xl font-black"
-        >
+        <h1 className="text-5xl md:text-7xl font-black">
           LEZZET DURAĞI
-        </motion.h1>
+        </h1>
 
-        {/* Açıklama */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.7,
-            delay: 0.3,
-            ease: "easeOut",
-          }}
-          className="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mt-6"
-        >
+        <p className="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mt-6">
           Taptaze malzemeler, özenle hazırlanan tarifler
           ve unutulmaz lezzetler.
-        </motion.p>
+        </p>
 
-        {/* Butonlar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.7,
-            delay: 0.45,
-            ease: "easeOut",
-          }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
           <a
             href="#menu"
             className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold transition hover:scale-105"
@@ -108,9 +95,8 @@ export default function Hero() {
           >
             Bize Ulaşın
           </a>
-        </motion.div>
-
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
