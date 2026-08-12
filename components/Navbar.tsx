@@ -5,15 +5,15 @@ import { useState } from "react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const links = [
-    { name: "Ana Sayfa", href: "#anasayfa" },
-    { name: "Popüler", href: "#populer" },
-    { name: "Menü", href: "#menu" },
-    { name: "Hakkımızda", href: "#hakkimizda" },
-    { name: "Galeri", href: "#galeri" },
-    { name: "Kampanyalar", href: "#kampanyalar" },
-    { name: "İletişim", href: "#iletisim" },
-  ];
+ const links = [
+  { name: "Ana Sayfa", href: "#anasayfa" },
+  { name: "Hakkımızda", href: "#hakkimizda" },
+  { name: "Menü", href: "#menu" },
+  { name: "Popüler", href: "#populer" },
+  { name: "Galeri", href: "#galeri" },
+  { name: "Kampanyalar", href: "#kampanyalar" },
+  { name: "İletişim", href: "#iletisim" },
+];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
