@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Menu() {
   const [activeCategory, setActiveCategory] = useState("Tümü");
@@ -72,7 +73,13 @@ export default function Menu() {
       <div className="max-w-7xl mx-auto">
 
         {/* Başlık */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-12"
+        >
           <p className="text-orange-500 font-bold tracking-widest text-sm mb-3">
             MENÜMÜZ
           </p>
@@ -86,10 +93,16 @@ export default function Menu() {
             Her damak zevkine uygun, özenle hazırladığımız lezzetleri
             keşfedin.
           </p>
-        </div>
+        </motion.div>
 
         {/* Kategoriler */}
-        <div className="flex flex-wrap justify-center gap-3 mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="flex flex-wrap justify-center gap-3 mb-14"
+        >
           {categories.map((category) => (
             <button
               key={category}
@@ -103,13 +116,30 @@ export default function Menu() {
               {category}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Menü Kartları */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((item, index) => (
-            <div
-              key={index}
+            <motion.div
+              key={item.name}
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.15,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.12,
+                ease: "easeOut",
+              }}
               className="group bg-gray-50 rounded-3xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
             >
 
@@ -154,7 +184,7 @@ export default function Menu() {
                 </a>
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 
