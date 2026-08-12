@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Gallery() {
   const images = [
@@ -42,7 +45,13 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto">
 
         {/* Başlık */}
-        <div className="text-center mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-14"
+        >
           <p className="text-orange-500 font-bold tracking-widest text-sm mb-3">
             GALERİ
           </p>
@@ -56,15 +65,34 @@ export default function Gallery() {
             Mutfağımızdan, restoranımızdan ve unutulmaz anlarımızdan
             kareler.
           </p>
-        </div>
+        </motion.div>
 
         {/* Galeri */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {images.map((image, index) => (
-            <div
-              key={index}
+            <motion.div
+              key={image.title}
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.15,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.12,
+                ease: "easeOut",
+              }}
               className={`group relative overflow-hidden rounded-3xl ${
-                index === 0 ? "lg:row-span-2 lg:h-[500px]" : "h-60"
+                index === 0
+                  ? "lg:row-span-2 lg:h-[500px]"
+                  : "h-60"
               }`}
             >
               <Image
@@ -90,7 +118,7 @@ export default function Gallery() {
                   </h3>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
