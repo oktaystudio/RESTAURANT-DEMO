@@ -1,9 +1,33 @@
+"use client";
+
+import { FormEvent } from "react";
+
 export default function Contact() {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+    const phone = (form.elements.namedItem("phone") as HTMLInputElement).value;
+    const message = (
+      form.elements.namedItem("message") as HTMLTextAreaElement
+    ).value;
+
+    const whatsappMessage =
+      `Merhaba, Lezzet Durağı web sitesinden iletişime geçiyorum.%0A%0A` +
+      `Ad Soyad: ${encodeURIComponent(name)}%0A` +
+      `Telefon: ${encodeURIComponent(phone)}%0A` +
+      `Mesaj: ${encodeURIComponent(message)}`;
+
+    window.open(
+      `https://wa.me/905447310322?text=${whatsappMessage}`,
+      "_blank"
+    );
+  };
+
   return (
-    <section
-      id="iletisim"
-      className="bg-white py-24 px-6"
-    >
+    <section id="iletisim" className="bg-white py-24 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Başlık */}
@@ -98,23 +122,25 @@ export default function Contact() {
 
             </div>
 
-            {/* Telefon Butonu */}
-           <a
-  href="https://wa.me/905447310322?text=Merhaba%2C%20sipariş%20vermek%20istiyorum."
-  target="_blank"
-  rel="noopener noreferrer"
-  className="block text-center mt-4 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full font-bold transition hover:scale-[1.02]"
->
-  WhatsApp'tan Sipariş Ver
-</a>
-<a
-  href="https://www.instagram.com/oktay_dolasmaz"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="block text-center mt-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white px-6 py-4 rounded-full font-bold transition hover:scale-[1.02]"
->
-  Instagram'da Bizi Takip Et
-</a>
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/905447310322?text=Merhaba%2C%20sipariş%20vermek%20istiyorum."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center mt-10 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full font-bold transition hover:scale-[1.02]"
+            >
+              WhatsApp'tan Sipariş Ver
+            </a>
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/lezzetduragi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center mt-4 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white px-6 py-4 rounded-full font-bold transition hover:scale-[1.02]"
+            >
+              Instagram'da Bizi Takip Et
+            </a>
 
           </div>
 
@@ -130,31 +156,40 @@ export default function Contact() {
               doldurabilirsiniz.
             </p>
 
-            <form className="mt-8 space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              className="mt-8 space-y-5"
+            >
 
               <input
                 type="text"
+                name="name"
+                required
                 placeholder="Adınız Soyadınız"
-                className="w-full bg-white border border-gray-200 rounded-xl px-5 py-4 outline-none focus:border-orange-500 transition"
+                className="w-full bg-white text-gray-900 placeholder:text-gray-400 border border-gray-200 rounded-xl px-5 py-4 outline-none focus:border-orange-500 transition"
               />
 
               <input
                 type="tel"
+                name="phone"
+                required
                 placeholder="Telefon Numaranız"
-                className="w-full bg-white border border-gray-200 rounded-xl px-5 py-4 outline-none focus:border-orange-500 transition"
+                className="w-full bg-white text-gray-900 placeholder:text-gray-400 border border-gray-200 rounded-xl px-5 py-4 outline-none focus:border-orange-500 transition"
               />
 
               <textarea
                 rows={5}
+                name="message"
+                required
                 placeholder="Mesajınız"
-                className="w-full bg-white border border-gray-200 rounded-xl px-5 py-4 outline-none focus:border-orange-500 transition resize-none"
+                className="w-full bg-white text-gray-900 placeholder:text-gray-400 border border-gray-200 rounded-xl px-5 py-4 outline-none focus:border-orange-500 transition resize-none"
               />
 
               <button
                 type="submit"
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-xl font-bold transition hover:scale-[1.01]"
               >
-                Mesaj Gönder
+                WhatsApp'tan Mesaj Gönder
               </button>
 
             </form>
