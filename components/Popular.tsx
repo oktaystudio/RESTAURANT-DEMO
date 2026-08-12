@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Popular() {
   const popularItems = [
@@ -30,7 +33,13 @@ export default function Popular() {
       <div className="max-w-7xl mx-auto">
 
         {/* Bölüm Başlığı */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-16"
+        >
           <p className="text-orange-500 font-bold tracking-widest text-sm mb-3">
             EN ÇOK TERCİH EDİLENLER
           </p>
@@ -43,13 +52,30 @@ export default function Popular() {
             Misafirlerimizin vazgeçilmezi olan, özenle hazırladığımız
             özel lezzetlerimizi keşfedin.
           </p>
-        </div>
+        </motion.div>
 
         {/* Yemek Kartları */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {popularItems.map((item, index) => (
-            <div
-              key={index}
+            <motion.div
+              key={item.name}
+              initial={{
+                opacity: 0,
+                y: 60,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.15,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.15,
+                ease: "easeOut",
+              }}
               className="group bg-gray-900 rounded-3xl overflow-hidden border border-white/10 hover:border-orange-500/50 hover:-translate-y-2 transition-all duration-300"
             >
 
@@ -82,32 +108,38 @@ export default function Popular() {
                   {item.description}
                 </p>
 
-               <a
-  href={`https://wa.me/905447310322?text=Merhaba%2C%20${encodeURIComponent(
-    item.name
-  )}%20hakkında%20bilgi%20almak%20istiyorum.`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="mt-6 text-orange-500 font-bold flex items-center gap-2 group-hover:gap-3 transition-all"
->
-  Detayları Gör
-  <span>→</span>
-</a>
+                <a
+                  href={`https://wa.me/905447310322?text=Merhaba%2C%20${encodeURIComponent(
+                    item.name
+                  )}%20hakkında%20bilgi%20almak%20istiyorum.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 text-orange-500 font-bold flex items-center gap-2 group-hover:gap-3 transition-all"
+                >
+                  Detayları Gör
+                  <span>→</span>
+                </a>
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Menü Butonu */}
-        <div className="text-center mt-14">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-14"
+        >
           <a
             href="#menu"
             className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold transition hover:scale-105"
           >
             Tüm Menüyü Gör
           </a>
-        </div>
+        </motion.div>
 
       </div>
     </section>
