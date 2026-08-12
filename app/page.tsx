@@ -1,23 +1,24 @@
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Menu from "@/components/Menu";
+import Popular from "@/components/Popular";
+import Gallery from "@/components/Gallery";
 import Campaigns from "@/components/Campaigns";
 import Contact from "@/components/Contact";
-import Gallery from "@/components/Gallery";
-import Hero from "@/components/Hero";
-import Menu from "@/components/Menu";
-import Navbar from "@/components/Navbar";
-import Popular from "@/components/Popular";
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <Navbar />
-      <Hero/>
-      <Popular/>
-      <Menu/>
-      <About/>
-      <Gallery/>
-      <Campaigns/>
-      <Contact/>
+     <>
+  <Navbar />
+  <Hero />
+  <About />
+  <Menu />
+  <Popular />
+  <Gallery />
+  <Campaigns />
+  <Contact />
+</>
     </main>
   );
 }
