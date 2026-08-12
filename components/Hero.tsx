@@ -10,30 +10,35 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
 
-      {/* Hareketli Arka Plan */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          scale: [1, 1.08, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <Image
-          src="/hero.png"
-          alt="Lezzet Durağı"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      </motion.div>
+      {/* Arka Plan Fotoğrafı */}
+      <Image
+        src="/hero.png"
+        alt="Lezzet Durağı"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
 
       {/* Koyu Katman */}
       <div className="absolute inset-0 bg-black/60" />
+
+      {/* Hareketli Işık Efekti */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        animate={{
+          opacity: [0.15, 0.3, 0.15],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          background:
+            "radial-gradient(circle at 50% 50%, rgba(249,115,22,0.25), transparent 45%)",
+        }}
+      />
 
       {/* İçerik */}
       <div className="relative z-10 text-center text-white px-6">
