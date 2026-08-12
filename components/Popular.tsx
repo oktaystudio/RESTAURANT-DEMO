@@ -82,10 +82,17 @@ export default function Popular() {
                   {item.description}
                 </p>
 
-                <button className="mt-6 text-orange-500 font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                  Detayları Gör
-                  <span>→</span>
-                </button>
+               <a
+  href={`https://wa.me/905447310322?text=Merhaba%2C%20${encodeURIComponent(
+    item.name
+  )}%20hakkında%20bilgi%20almak%20istiyorum.`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-6 text-orange-500 font-bold flex items-center gap-2 group-hover:gap-3 transition-all"
+>
+  Detayları Gör
+  <span>→</span>
+</a>
               </div>
 
             </div>
