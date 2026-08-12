@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Menu() {
+  const [activeCategory, setActiveCategory] = useState("Tümü");
+
   const menuItems = [
     {
       name: "Izgara Bonfile",
@@ -46,6 +51,19 @@ export default function Menu() {
     },
   ];
 
+  const categories = [
+    "Tümü",
+    "Ana Yemekler",
+    "Burger",
+    "Pizza",
+    "Tatlı",
+  ];
+
+  const filteredItems =
+    activeCategory === "Tümü"
+      ? menuItems
+      : menuItems.filter((item) => item.category === activeCategory);
+
   return (
     <section
       id="menu"
@@ -60,7 +78,8 @@ export default function Menu() {
           </p>
 
           <h2 className="text-4xl md:text-5xl font-black text-gray-900">
-            Lezzetli <span className="text-orange-500">Seçenekler</span>
+            Lezzetli{" "}
+            <span className="text-orange-500">Seçenekler</span>
           </h2>
 
           <p className="text-gray-500 max-w-2xl mx-auto mt-5 text-lg">
@@ -71,30 +90,24 @@ export default function Menu() {
 
         {/* Kategoriler */}
         <div className="flex flex-wrap justify-center gap-3 mb-14">
-          <button className="bg-orange-500 text-white px-6 py-3 rounded-full font-bold">
-            Tümü
-          </button>
-
-          <button className="bg-gray-100 hover:bg-orange-500 hover:text-white text-gray-700 px-6 py-3 rounded-full font-bold transition">
-            Ana Yemekler
-          </button>
-
-          <button className="bg-gray-100 hover:bg-orange-500 hover:text-white text-gray-700 px-6 py-3 rounded-full font-bold transition">
-            Burger
-          </button>
-
-          <button className="bg-gray-100 hover:bg-orange-500 hover:text-white text-gray-700 px-6 py-3 rounded-full font-bold transition">
-            Pizza
-          </button>
-
-          <button className="bg-gray-100 hover:bg-orange-500 hover:text-white text-gray-700 px-6 py-3 rounded-full font-bold transition">
-            Tatlı
-          </button>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-6 py-3 rounded-full font-bold transition ${
+                activeCategory === category
+                  ? "bg-orange-500 text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-orange-500 hover:text-white"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
 
         {/* Menü Kartları */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {menuItems.map((item, index) => (
+          {filteredItems.map((item, index) => (
             <div
               key={index}
               className="group bg-gray-50 rounded-3xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
@@ -129,9 +142,16 @@ export default function Menu() {
                   {item.description}
                 </p>
 
-                <button className="mt-5 text-gray-900 font-bold hover:text-orange-500 transition">
+                <a
+                  href={`https://wa.me/905447310322?text=Merhaba%2C%20${encodeURIComponent(
+                    item.name
+                  )}%20siparişi%20vermek%20istiyorum.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-5 text-gray-900 font-bold hover:text-orange-500 transition"
+                >
                   Sipariş Ver →
-                </button>
+                </a>
               </div>
 
             </div>
