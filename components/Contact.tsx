@@ -201,7 +201,7 @@ export default function Contact() {
       </div>
       {/* Web Tasarım */}
 <div className="mt-16 pt-8 border-t border-gray-200 text-center">
-  <p className="text-black text-2xl">
+  <p className="text-black text-xl">
     Web Tasarım & Geliştirme:{" "}
     <span className="text-orange-700 font-black text-3xl">
   Oktay Studio
